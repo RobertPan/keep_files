@@ -1,0 +1,31 @@
+
+/*........................................................*/
+//part1
+
+class Node{
+public:
+    int value;
+    Node* next;
+    Node(int val):value(val){}
+    ~Node(){}
+};
+
+
+int findCommon(Node** Nlist, int length){
+    int min_val = INT_MIN;
+    while(1){// we don't assume the length of any linked list
+        int cnt = 0;
+        for(int i = 0; i< length; i++){
+            if(not Nlist[i]) return -1;
+            if(Nlist[i]->value > min_val) min_val = Nlist[i]->value; //* if bigger replace the min_val with the bigger one
+            else if(Nlist[i]->value < min_val ) {//* if smaller move ahead; and increase cnt
+                Nlist[i] = Nlist[i]->next;
+                cnt++;
+            }
+        }
+        if(not cnt) return min_val;//* when no moving ahead action for any linked list, min_val is the common value
+    }
+    
+}
+
+
